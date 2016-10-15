@@ -65,9 +65,11 @@ body {
     text-align: center;
     margin-top: 20px;
     height: 55px;
-    background-color: white;
+    background-color: #eee;
     font-family: Steamwreck, Arial, sans-serif;
     font-size: 40px;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
 
 #timerBar span {
@@ -79,5 +81,7 @@ body {
     position: absolute;
     height: 55px;
     width: 100%;
-    background-color: cornflowerblue;
+    border-radius: 2px;
+    background-color: lightslategray;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
