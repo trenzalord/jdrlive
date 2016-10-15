@@ -1,0 +1,61 @@
+body {
+    background-image: url("../img/201151.jpg");
+}
+
+
+.left-panel {
+}
+
+.vue-zone {
+}
+
+.right-panel {
+    
+}
+
+.ctrl-panel {
+    background-image: url("../img/perso_font.jpg");
+    height: 450px;
+    margin-top: 15px;
+    border-radius: 30px;
+    border: solid black 4px;
+    -moz-box-shadow: 3px 3px 15px 2px #000000;
+    -webkit-box-shadow: 3px 3px 15px 2px #000000;
+    -o-box-shadow: 3px 3px 15px 2px #000000;
+    box-shadow: 3px 3px 15px 2px #000000;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=135, Strength=15);
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+}
+
+.in-ctrl-panel {
+    background-image: url("../img/perso_font_struct.jpg");
+    height: 400px;
+    margin-top: 20px;
+    border-radius: 30px;
+}
+
+.img-btn {
+    width: 50px;
+    height: 50px;
+}
+
+.btn-dice {
+    width: 100px;
+    height: 100px;
+}
+
+.select-dice {
+    width: 100px;
+    height: 100px;
+}
+
+.dice-line {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.connect-zone {
+    text-align: center;
+    margin-top: 20px;
+}
