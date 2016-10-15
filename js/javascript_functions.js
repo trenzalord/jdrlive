@@ -53,6 +53,13 @@ function rollDice(maxRoll) {
         success: function (data) {
             console.log(data);
             var json = JSON.parse(data);
+            if(json.max == json.value) {
+                $('.container').addClass("container_success").removeClass("container_fail");
+            } else if (json.value == 1){
+                $('.container').addClass("container_fail").removeClass("container_success");
+            } else {
+                $('.container').removeClass("container_fail").removeClass("container_success")
+            }
             $('#valeurMaxDe').text("Dé de " + json.max);
             $('#chiffre').text(json.value);
             $('#utilisateurAffiche').text(json.user);
