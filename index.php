@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
 include "bd_connect.php";
-echo $bdConnected;
 ?>
 <html lang="fr">
 <head>
@@ -37,13 +36,15 @@ echo $bdConnected;
 <body>
 <?php if($bdConnected){ ?>
 
-    <div class="col-md-4 left-panel">
-        <div class="ctrl-panel col-md-12">
-            <div class="in-ctrl-panel">
+    <div class="col-md-4">
+        <div class="left-panel">
+            <div class="ctrl-panel col-md-12">
+                <div class="in-ctrl-panel">
+                </div>
             </div>
-        </div>
-        <div class="ctrl-panel col-md-12">
-            <div class="in-ctrl-panel">
+            <div class="ctrl-panel col-md-12">
+                <div class="in-ctrl-panel">
+                </div>
             </div>
         </div>
     </div>
@@ -59,30 +60,36 @@ echo $bdConnected;
             <p class="descriptionChiffre" id="valeurMaxDe">Dé de 20</p>
         </div>
     </div>
-    <div class="col-md-4 right-panel">
-        <div class="ctrl-panel col-md-12">
-            <div class="in-ctrl-panel">
+    <div class="col-md-4">
+        <div class="right-panel">
+            <div class="ctrl-panel col-md-12">
+                <div class="in-ctrl-panel">
 
+                </div>
             </div>
-        </div>
-        <div class="ctrl-panel col-md-12">
-            <div class="in-ctrl-panel">
-                <div class="col-md-12 dice-line">
-                    <button class="btn btn-default btn-dice" onclick="rollDice(20)">
-                        <img src="img/d20.png" alt="d20" class="img-btn">
-                    </button>
-                    <button class="btn btn-default btn-dice" onclick="rollDice(10)">
-                        <img src="img/d10.png" alt="d10" class="img-btn">
-                    </button>
-                    <input title="maxValueDesired" type="number" class="select-dice" id="select-dice"/>
-                    <button class="btn btn-default btn-dice" onclick="rollDice($('#select-dice').val())">
-                        Roll
-                    </button>
+            <div class="ctrl-panel col-md-12">
+                <div class="in-ctrl-panel">
+                    <div class="col-md-12 dice-line">
+                        <button class="btn btn-default btn-dice" onclick="rollDice(20)">
+                            <img src="img/d20.png" alt="d20" class="img-btn">
+                        </button>
+                        <button class="btn btn-default btn-dice" onclick="rollDice(10)">
+                            <img src="img/d10.png" alt="d10" class="img-btn">
+                        </button>
+                        <input title="maxValueDesired" type="number" class="select-dice" id="select-dice"/>
+                        <button class="btn btn-default btn-dice" onclick="rollDice($('#select-dice').val())">
+                            Roll
+                        </button>
+                        <button class="btn btn-default" onClick="disconnect()">
+                            Déconnecter
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-    <script>setInterval(updateDice, 500);</script>
+    <script>autoConnect();setInterval(updateDice, 500);</script>
 <?php } ?>
 
 </body>
