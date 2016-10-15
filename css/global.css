@@ -65,7 +65,7 @@ body {
     text-align: center;
     margin-top: 20px;
     height: 55px;
-    background-color: #eee;
+    background-color: #837B68;
     font-family: Steamwreck, Arial, sans-serif;
     font-size: 40px;
     border-radius: 2px;
@@ -82,6 +82,6 @@ body {
     height: 55px;
     width: 100%;
     border-radius: 2px;
-    background-color: lightslategray;
+    background-color: #BFA574;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
