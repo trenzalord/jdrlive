@@ -38,7 +38,10 @@ function connect() {
 }
 
 function rollDice(maxRoll) {
-    var userName = JSON.parse(localStorage.getItem("user")).name;
+    var userName = "";
+    if(localStorage.getItem("user") != null) {
+        userName = JSON.parse(localStorage.getItem("user")).name;
+    }
     $.ajax
     ({
         url: 'ajax/update_dice.php',
