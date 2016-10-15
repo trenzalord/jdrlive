@@ -8,6 +8,8 @@ echo $bdConnected;
     <meta charset="utf-8">
     <title>Nemesia</title>
 
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -30,8 +32,6 @@ echo $bdConnected;
     <link rel="stylesheet" media="screen" type="text/css" href="css/all.css">
     <link rel="stylesheet" media="screen" type="text/css" href="css/de.css">
     <script src="js/javascript_functions.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -40,12 +40,10 @@ echo $bdConnected;
     <div class="col-md-4 left-panel">
         <div class="ctrl-panel col-md-12">
             <div class="in-ctrl-panel">
-
             </div>
         </div>
         <div class="ctrl-panel col-md-12">
             <div class="in-ctrl-panel">
-
             </div>
         </div>
     </div>
@@ -53,10 +51,12 @@ echo $bdConnected;
         <div class="connect-zone">
             <input type="text" name="login" placeholder="Nom d'utilisateur" id="login_log"/>
             <input type="password" name="mdp" placeholder="Mots de passe" id="password_log"/>
-            <button id="button_log" onclick="loggin()">Valider</button>
+            <button id="button_log" onclick="login()">Valider</button>
         </div>
         <div class="container container_dice">
-            <p class="chiffre" id="chiffre">20</p>
+            <p class="descriptionChiffre" id="utilisateurAffiche">Billy</p>
+            <p id="chiffre">20</p>
+            <p class="descriptionChiffre" id="valeurMaxDe">Dé de 20</p>
         </div>
     </div>
     <div class="col-md-4 right-panel">
@@ -68,20 +68,21 @@ echo $bdConnected;
         <div class="ctrl-panel col-md-12">
             <div class="in-ctrl-panel">
                 <div class="col-md-12 dice-line">
-                    <button class="btn btn-default btn-dice">
+                    <button class="btn btn-default btn-dice" onclick="rollDice(20)">
                         <img src="img/d20.png" alt="d20" class="img-btn">
                     </button>
-                    <button class="btn btn-default btn-dice">
-                        <img src="img/d10.png" alt="d20" class="img-btn">
+                    <button class="btn btn-default btn-dice" onclick="rollDice(10)">
+                        <img src="img/d10.png" alt="d10" class="img-btn">
                     </button>
-                    <input type="number" class="select-dice" id="select-dice"/>
-                    <button class="btn btn-default btn-dice">
-                        <h1>Roll</h1>
+                    <input title="maxValueDesired" type="number" class="select-dice" id="select-dice"/>
+                    <button class="btn btn-default btn-dice" onclick="rollDice($('#select-dice').val())">
+                        Roll
                     </button>
                 </div>
             </div>
         </div>
     </div>
+    <script>setInterval(updateDice, 500);</script>
 <?php } ?>
 
 </body>

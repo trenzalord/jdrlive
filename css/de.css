@@ -8,17 +8,27 @@
     cursor: pointer;
 }
 
-.chiffre {
+#chiffre {
     font-size: 300px;
-    margin-top: -45px;
     margin-left: 10px;
-    font-family: Steamwreck;
+    margin-top: -100px;
+    font-family: Steamwreck, Arial, sans-serif;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-    -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    text-shadow: 0px 0px 6px whitesmoke;
+    text-shadow: 0 0 6px whitesmoke;
     color: black;
+}
+
+.descriptionChiffre {
+    font-size: 40px;
+    font-family: Steamwreck, Arial, sans-serif;
+    color: white;
+    text-shadow: 0 0 6px black;
+}
+
+#valeurMaxDe {
+    margin-top: -80px;
 }

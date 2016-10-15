@@ -1,6 +1,5 @@
 .container {
-    background-color: whitesmoke;
-    background-image : url(../img/dice_fond.jpg);
+    background: whitesmoke url(../img/dice_fond.jpg);
     border: solid black 4px;
     -moz-box-shadow: 3px 3px 15px 2px #000000;
     -webkit-box-shadow: 3px 3px 15px 2px #000000;
@@ -14,10 +13,9 @@
     position:absolute;
     left: 50%;
     top: 50%;
-    width: 350px;
-    height: 350px;
+    width: 400px;
+    height: 400px;
     margin-left: -170px;
     margin-top: 50px;
-    border-radius: 75px;
 }
 

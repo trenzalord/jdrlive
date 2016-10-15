@@ -1,9 +1,9 @@
 @font-face {
     font-family: Steamwreck;
-    src: url("../../Nemesia/font/Steamwreck.otf");
+    src: url("fonts/Steamwreck.otf");
 }
 
 @font-face {
     font-family: Steamwpuff;
-    src: url("../../Nemesia/font/Steampuff.otf");
+    src: url("fonts/Steampuff.otf");
 }
