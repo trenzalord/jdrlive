@@ -76,7 +76,8 @@ include "bd_connect.php";
                         <button class="btn btn-default btn-dice" onclick="rollDice(10)">
                             <img src="img/d10.png" alt="d10" class="img-btn">
                         </button>
-                        <input title="maxValueDesired" type="number" class="select-dice" id="select-dice"/>
+                        <input title="Valeur de dé désiré" type="number" class="select-dice" id="select-dice"/>
+                        <input title="Sauvegarder en BD" type="checkbox" id="saveInDb"/>
                         <button class="btn btn-default btn-dice" onclick="rollDice($('#select-dice').val())">
                             Roll
                         </button>

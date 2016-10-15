@@ -38,14 +38,18 @@ function connect() {
 }
 
 function rollDice(maxRoll) {
-    var userName = "";
+    var userName = null;
+    var login = null;
     if(localStorage.getItem("user") != null) {
-        userName = JSON.parse(localStorage.getItem("user")).name;
+        var user = JSON.parse(localStorage.getItem("user"));
+        userName = user.name;
+        login = user.login;
     }
+    var saveInBd = document.getElementById("saveInDb").checked;
     $.ajax
     ({
         url: 'ajax/update_dice.php',
-        data: { maxRoll: maxRoll, name: userName},
+        data: { maxRoll: maxRoll, name: userName, login: login, save: saveInBd},
         success: function (data) {
             console.log(data);
             var json = JSON.parse(data);
