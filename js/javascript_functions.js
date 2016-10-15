@@ -63,3 +63,35 @@ function rollDice(maxRoll) {
 function updateDice() {
     rollDice(0);
 }
+
+function updateBarre(lvl, value) {
+    $('#barre').css("width", lvl + "%");
+    $('#tempsRestant').text(value + " s");
+}
+
+function updateTimer() {
+    startTimer(0);
+}
+
+function startTimer(duration) {
+    var start = $.now();
+    $.ajax
+    ({
+        url: 'ajax/update_time.php',
+        data: { duration: duration, start: start},
+        success: function (data) {
+            var json = JSON.parse(data);
+            var currentDate = new Date();
+            var startDate = new Date();
+            startDate.setTime(json.start);
+            var seconds = (currentDate.getTime() - startDate.getTime())/1000;
+            seconds = json.duration - seconds;
+            if(seconds < 0) {
+                seconds = 0;
+            }
+            seconds = Math.round(seconds);
+            var pourcentage = (seconds * 100)/json.duration;
+            updateBarre(pourcentage, seconds);
+        }
+    });
+}

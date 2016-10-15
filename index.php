@@ -44,6 +44,8 @@ include "bd_connect.php";
             </div>
             <div class="ctrl-panel col-md-12">
                 <div class="in-ctrl-panel">
+                    <input title="Temps désiré" type="number" min="0" id="timerTime"/>
+                    <button class="btn btn-default" onclick="startTimer($('#timerTime').val())">Démarrer</button>
                 </div>
             </div>
         </div>
@@ -53,6 +55,10 @@ include "bd_connect.php";
             <input type="text" name="login" placeholder="Nom d'utilisateur" id="login_log"/>
             <input type="password" name="mdp" placeholder="Mots de passe" id="password_log"/>
             <button id="button_log" onclick="login()">Valider</button>
+        </div>
+        <div id="timerBar">
+            <div id="barre"></div>
+            <span id="tempsRestant">64 s</span>
         </div>
         <div class="container container_dice">
             <p class="descriptionChiffre" id="utilisateurAffiche">Billy</p>
@@ -90,7 +96,7 @@ include "bd_connect.php";
             </div>
         </div>
     </div>
-    <script>autoConnect();setInterval(updateDice, 500);</script>
+    <script>autoConnect();setInterval(updateTimer, 500);setInterval(updateDice, 500)</script>
 <?php } ?>
 
 </body>
