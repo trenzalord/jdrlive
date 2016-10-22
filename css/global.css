@@ -33,6 +33,7 @@ body {
     height: 400px;
     margin-top: 20px;
     border-radius: 30px;
+    padding: 20px;
 }
 
 .img-btn {
@@ -84,4 +85,71 @@ body {
     border-radius: 2px;
     background-color: #BFA574;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+#characterPlayed {
+    color: white;
+    font-family: Steamwreck, Arial, sans-serif;
+    font-size: 30px;
+}
+
+.stats {
+    background: whitesmoke url(../img/dice_fond.jpg);
+    border: solid black 2px;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    box-sizing: border-box;
+    font-family: Steamwreck, Arial, sans-serif;
+    margin-top: 20px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+}
+
+.nomStat {
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+.statBar {
+    position: relative;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    background-color: #837B68;
+    margin-top: 2px;
+    height: 25px;
+    text-align: center;
+}
+
+.statBar span {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+}
+
+.statBar div {
+    position: absolute;
+    height: 25px;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+.healthBar div {
+    background-color: #D32F2F;
+}
+
+.manaBar div {
+    background-color: #3F51B5;
+}
+
+.ephiriumBar div {
+    background-color: #4CAF50;
+}
+
+#displayStatsButtons form {
+    margin-top: 5px;
 }

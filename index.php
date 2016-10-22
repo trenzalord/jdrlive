@@ -44,17 +44,21 @@ include "bd_connect.php";
             </div>
             <div class="ctrl-panel col-md-12">
                 <div class="in-ctrl-panel">
-                    <input title="Temps désiré" type="number" min="0" id="timerTime"/>
-                    <button class="btn btn-default" onclick="startTimer($('#timerTime').val())">Démarrer</button>
+                    <form class="form-inline">
+                        <input class="form-control" title="Temps désiré" type="number" min="0" id="timerTime"/>
+                        <button class="btn btn-default" type="button" onclick="startTimer($('#timerTime').val())">Démarrer</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-4 vue-zone">
         <div class="connect-zone">
-            <input type="text" name="login" placeholder="Nom d'utilisateur" id="login_log"/>
-            <input type="password" name="mdp" placeholder="Mots de passe" id="password_log"/>
-            <button id="button_log" onclick="login()">Valider</button>
+            <form class="form-inline">
+                <input type="text" class="form-control" name="login" placeholder="Nom d'utilisateur" id="login_log"/>
+                <input type="password" class="form-control" name="mdp" placeholder="Mots de passe" id="password_log"/>
+                <button id="button_log" type="button" class="btn btn-default" onclick="loginTest()">Valider</button>
+            </form>
         </div>
         <div id="timerBar">
             <div id="barre"></div>
@@ -65,12 +69,58 @@ include "bd_connect.php";
             <p id="chiffre">20</p>
             <p class="descriptionChiffre" id="valeurMaxDe">Dé de 20</p>
         </div>
+        <div id="statsCharacters">
+
+        </div>
     </div>
     <div class="col-md-4">
         <div class="right-panel">
             <div class="ctrl-panel col-md-12">
                 <div class="in-ctrl-panel">
-
+                    <form class="form-inline">
+                        <select class="form-control" title="Personnage" id="selectCharacter">
+                        </select>
+                        <button class="btn btn-default" type="button" onclick="selectCharacterClick($('#selectCharacter').val())">
+                            Sélectionner
+                        </button>
+                    </form>
+                    <br>
+                    <p id="characterPlayed">Joue avec : aucun personnage</p>
+                    <br>
+                    <div id="displayStatsButtons">
+                        <button class="btn btn-default" onclick="addCharacter('1', '0')">Afficher les stats</button>
+                        <button class="btn btn-default" onclick="addCharacter('1', '1')">Cacher les stats</button>
+                        <form class="form-inline">
+                            <input class="form-control" title="Vie" min="0" type="number" id="valeurHealth" placeholder="Vie"/>
+                            <select class="form-control" title="type" id="selectHealth">
+                                <option value="0">Ajouter</option>
+                                <option value="1">Retirer</option>
+                            </select>
+                            <button type="button" class="btn btn-default" onclick="updateHealth($('#valeurHealth').val(), $('#selectHealth').val())">
+                                OK
+                            </button>
+                        </form>
+                        <form class="form-inline">
+                            <input class="form-control" title="Mana" min="0" type="number" id="valeurMana" placeholder="Mana"/>
+                            <select class="form-control" title="type" id="selectMana">
+                                <option value="0">Ajouter</option>
+                                <option value="1">Retirer</option>
+                            </select>
+                            <button type="button" class="btn btn-default" onclick="updateMana($('#valeurMana').val(), $('#selectMana').val())">
+                                OK
+                            </button>
+                        </form>
+                        <form class="form-inline">
+                            <input class="form-control" title="Ephirium" min="0" type="number" id="valeurEphirium" placeholder="Ephirium"/>
+                            <select class="form-control" title="type" id="selectEphirium">
+                                <option value="0">Ajouter</option>
+                                <option value="1">Retirer</option>
+                            </select>
+                            <button type="button" class="btn btn-default" onclick="updateEphirium($('#valeurEphirium').val(), $('#selectEphirium').val())">
+                                OK
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="ctrl-panel col-md-12">
@@ -91,12 +141,11 @@ include "bd_connect.php";
                             Déconnecter
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-    <script>autoConnect();setInterval(updateTimer, 500);setInterval(updateDice, 500)</script>
+    <script>autoConnect();setInterval(updateStats, 500);//setInterval(updateTimer, 500);setInterval(updateDice, 500)</script>
 <?php } ?>
 
 </body>
