@@ -116,6 +116,8 @@ function getValeOfSkill(skill, character) {
             return character.endurance;
         case "perception":
             return character.perception;
+        case "constitution":
+            return character.constitution;
         default:
             return 0;
     }
@@ -145,6 +147,8 @@ function getSkillNameOfSkill(skill) {
             return "Endurance";
         case "perception":
             return "Perception";
+        case "constitution":
+            return "Constitution";
         default:
             return "";
     }
