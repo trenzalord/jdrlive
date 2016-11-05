@@ -72,7 +72,11 @@ function rollDice(maxRoll, skill) {
                 $('.container').addClass("container_fail").removeClass("container_success");
                 $('#detailLance').text("Échec critique");
             } else {
-                $('#detailLance').text(json.value + " + " + json.skillValue);
+                if(json.skillValue != 0) {
+                    $('#detailLance').text(json.value + " + " + json.skillValue);
+                } else {
+                    $('#detailLance').text("");
+                }
                 $('#chiffre').text(parseInt(json.value) + parseInt(json.skillValue));
                 $('.container').removeClass("container_fail").removeClass("container_success")
             }

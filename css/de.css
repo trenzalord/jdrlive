@@ -9,8 +9,12 @@
 }
 
 #chiffre {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     font-size: 300px;
-    margin-top: -100px;
     font-family: Steamwreck, Arial, sans-serif;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -29,7 +33,10 @@
 }
 
 #valeurMaxDe {
-    margin-top: -20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10px;
 }
 
 .sousDescriptionChiffre {
@@ -41,5 +48,15 @@
 }
 
 #detailLance {
-    margin-top: -100px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+}
+
+#typeLance {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 60px;
 }
