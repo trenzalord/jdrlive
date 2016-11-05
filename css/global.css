@@ -154,3 +154,28 @@ body {
 #displayStatsButtons form {
     margin-top: 5px;
 }
+
+h2 {
+    font-family: Steamwreck, Arial, sans-serif;
+    color: white;
+    font-size: 50px;
+}
+
+#characterStatsTable {
+    font-size: 14px;
+    background-color: white;
+    color: black;
+    margin-top: 20px;
+}
+
+#characterStatsTable tr, #characterStatsTable td{
+    border: 1px solid #837B68;
+}
+
+.headTableRow {
+    background-color: #000000; color: white;
+}
+
+.subTableRow {
+    background-color: #837B68; color: white;
+}

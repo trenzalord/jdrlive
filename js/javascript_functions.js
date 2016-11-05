@@ -134,7 +134,7 @@ function getSkillNameOfSkill(skill) {
         case "courage":
             return "Courage";
         case "speed":
-            return "Vitesse";
+            return "Rapidité";
         case "wisdom":
             return "Sagesse";
         case "endurance":

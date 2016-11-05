@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <?php
 include "bd_connect.php";
+$query = "SELECT * FROM characters;";
+$stm = $bd->prepare($query);
+$stm->execute();
+$res = $stm->get_result();
+$characters = [];
+while ($row = $res->fetch_assoc()){
+    $characters[$row['id_character']] = $row;
+}
 ?>
 <html lang="fr">
 <head>
@@ -40,6 +48,13 @@ include "bd_connect.php";
         <div class="left-panel">
             <div class="ctrl-panel col-md-12">
                 <div class="in-ctrl-panel">
+                    <form target="_blank" action="consultation_character.php" method="get">
+                        <select onchange="this.form.submit()" title="Personnages" class="form-control" id="selectPersonnage" name="id_character">
+                            <?php foreach($characters as $char) { ?>
+                                <option value="<?= $char['id_character'] ?>"><?= $char['firstname'] . " " . $char['lastname'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </form>
                 </div>
             </div>
             <div class="ctrl-panel col-md-12">
@@ -144,10 +159,11 @@ include "bd_connect.php";
                                 <option value="charism">Charisme</option>
                                 <option value="precision">Précision</option>
                                 <option value="courage">Courage</option>
-                                <option value="speed">Vitesse</option>
+                                <option value="speed">Rapidité</option>
                                 <option value="wisdom">Intelligence</option>
                                 <option value="endurance">Endurance</option>
                                 <option value="perception">Perception</option>
+                                <option value="constitution">Constitution</option>
                             </select>
                             <input title="Sauvegarder en BD" type="checkbox" id="saveInDb"/>
                             <button type="button" class="btn btn-default btn-dice" onclick="rollDice(20, $('#selectCompetence').val())">
