@@ -4,13 +4,17 @@ $maxRoll = isset($_REQUEST['maxRoll'])? $_REQUEST['maxRoll'] : 0;
 $name = isset($_REQUEST['name'])? $_REQUEST['name'] : null;
 $login = isset($_REQUEST['login'])? $_REQUEST['login'] : null;
 $saveInDB = isset($_REQUEST['save'])? $_REQUEST['save'] : null;
+$skill = isset($_REQUEST['skill'])? $_REQUEST['skill'] : null;
+$skillValue = isset($_REQUEST['skillValue'])? $_REQUEST['skillValue'] : null;
 
 if($content !== false){
     $object = json_decode($content);
-    if($maxRoll != 0 && $name != null && $saveInDB != null && $login != null){
+    if($maxRoll != 0 && $name != null && $saveInDB != null && $login != null && $skill != null && $skillValue != null){
         $object->max = $maxRoll;
         $object->value = rand(1, $maxRoll);
         $object->user = $name;
+        $object->skill = $skill;
+        $object->skillValue = $skillValue;
         if($saveInDB != "false" && $maxRoll == 20) {
             include "../bd_connect.php";
             if($bdConnected) {

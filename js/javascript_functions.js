@@ -42,38 +42,112 @@ function connect() {
     updateCharactersList();
 }
 
-function rollDice(maxRoll) {
+function rollDice(maxRoll, skill) {
     var userName = null;
     var login = null;
+    var skillValue = 0;
     if(localStorage.getItem("user") != null) {
         var user = JSON.parse(localStorage.getItem("user"));
-        userName = user.name;
         login = user.login;
+        if(localStorage.getItem("currentCharacter") != null) {
+            var currentCharacter = JSON.parse(localStorage.getItem("currentCharacter"));
+            skillValue = getValeOfSkill(skill, currentCharacter);
+            userName = currentCharacter.firstname + " " + currentCharacter.lastname;
+        }
     }
     var saveInBd = document.getElementById("saveInDb").checked;
     $.ajax
     ({
         url: 'ajax/update_dice.php',
-        data: { maxRoll: maxRoll, name: userName, login: login, save: saveInBd},
+        data: { maxRoll: maxRoll, name: userName, login: login, save: saveInBd, skill: skill, skillValue: skillValue},
         success: function (data) {
             console.log(data);
             var json = JSON.parse(data);
             if(json.max == json.value) {
+                $('#chiffre').text(json.value);
                 $('.container').addClass("container_success").removeClass("container_fail");
+                $('#detailLance').text("Réussite critique");
             } else if (json.value == 1){
+                $('#chiffre').text(json.value);
                 $('.container').addClass("container_fail").removeClass("container_success");
+                $('#detailLance').text("Échec critique");
             } else {
+                $('#detailLance').text(json.value + " + " + json.skillValue);
+                $('#chiffre').text(parseInt(json.value) + parseInt(json.skillValue));
                 $('.container').removeClass("container_fail").removeClass("container_success")
             }
             $('#valeurMaxDe').text("Dé de " + json.max);
-            $('#chiffre').text(json.value);
+            var skillNameText = getSkillNameOfSkill(json.skill);
+            if(skillNameText != "") {
+                $('#typeLance').text("Test de " + skillNameText);
+            } else {
+                $('#typeLance').text("");
+            }
             $('#utilisateurAffiche').text(json.user);
         }
     });
 }
 
+function getValeOfSkill(skill, character) {
+    switch(skill) {
+        case "0":
+            return 0;
+        case "strengh":
+            return character.strengh;
+        case "intelligence":
+            return character.intelligence;
+        case "dexterity":
+            return character.dexterity;
+        case "charism":
+            return character.charism;
+        case "precision":
+            return character.precision;
+        case "courage":
+            return character.courage;
+        case "speed":
+            return character.speed;
+        case "wisdom":
+            return character.wisdom;
+        case "endurance":
+            return character.endurance;
+        case "perception":
+            return character.perception;
+        default:
+            return 0;
+    }
+}
+
+function getSkillNameOfSkill(skill) {
+    switch (skill) {
+        case "0":
+            return "";
+        case "strengh":
+            return "Force";
+        case "intelligence":
+            return "Intelligence";
+        case "dexterity":
+            return "Dexterité";
+        case "charism":
+            return "Charisme";
+        case "precision":
+            return "Précision";
+        case "courage":
+            return "Courage";
+        case "speed":
+            return "Vitesse";
+        case "wisdom":
+            return "Sagesse";
+        case "endurance":
+            return "Endurance";
+        case "perception":
+            return "Perception";
+        default:
+            return "";
+    }
+}
+
 function updateDice() {
-    rollDice(0);
+    rollDice(0, "0");
 }
 
 function updateBarre(lvl, value) {
@@ -221,10 +295,29 @@ function updateBarsForCharacter(container, h, hm, m, mm, e, em){
 
 function updateHealth(value, type) {
     var character = JSON.parse(localStorage.getItem("currentCharacter"));
-    if(type == 0) {
-        character.life_point = parseInt(character.life_point) + parseInt(value);
-    } else {
-        character.life_point = parseInt(character.life_point) - parseInt(value);
+    switch (type) {
+        case "0":
+            var ajout = parseInt(character.life_point) + parseInt(value);
+            if (ajout > parseInt(character.life_point_max)) {
+                character.life_point = character.life_point_max;
+            } else {
+                character.life_point = ajout;
+            }
+            break;
+        case "1":
+            character.life_point = parseInt(character.life_point) - parseInt(value);
+            break;
+        case "2":
+            var valueInt = parseInt(value);
+            var resistance = parseInt(character.damage_resistance);
+            var valeurFinale = 0;
+            if (valueInt > resistance) {
+                valeurFinale = valueInt - resistance;
+            } else {
+                valeurFinale = 0;
+            }
+            character.life_point = parseInt(character.life_point) - valeurFinale;
+            break;
     }
     localStorage.setItem("currentCharacter", JSON.stringify(character));
     addCharacter('1', '');
@@ -233,7 +326,12 @@ function updateHealth(value, type) {
 function updateMana(value, type) {
     var character = JSON.parse(localStorage.getItem("currentCharacter"));
     if(type == 0) {
-        character.mana = parseInt(character.mana) + parseInt(value);
+        var ajout = parseInt(character.mana) + parseInt(value);
+        if (ajout > parseInt(character.mana_max)) {
+            character.mana = character.mana_max;
+        } else {
+            character.mana = ajout;
+        }
     } else {
         character.mana = parseInt(character.mana)- parseInt(value);
     }
@@ -243,10 +341,29 @@ function updateMana(value, type) {
 
 function updateEphirium(value, type) {
     var character = JSON.parse(localStorage.getItem("currentCharacter"));
-    if(type == 0) {
-        character.ephirium_tolerance = parseInt(character.ephirium_tolerance) + parseInt(value);
-    } else {
-        character.ephirium_tolerance = parseInt(character.ephirium_tolerance) - parseInt(value);
+    switch (type) {
+        case "0":
+            var ajout = parseInt(character.ephirium_tolerance) + parseInt(value);
+            if(ajout > parseInt(character.ephirium_tolerance_max)) {
+                character.ephirium_tolerance = parseInt(character.ephirium_tolerance_max);
+            } else {
+                character.ephirium_tolerance = ajout;
+            }
+            break;
+        case "1":
+            character.ephirium_tolerance = parseInt(character.ephirium_tolerance) - parseInt(value);
+            break;
+        case "2":
+            var valueInt = parseInt(value);
+            var resistance = parseInt(character.ephirium_resistance);
+            var valeurFinale = 0;
+            if (valueInt > resistance) {
+                valeurFinale = valueInt - resistance;
+            } else {
+                valeurFinale = 0;
+            }
+            character.ephirium_tolerance = parseInt(character.ephirium_tolerance) - valeurFinale;
+            break
     }
     localStorage.setItem("currentCharacter", JSON.stringify(character));
     addCharacter('1', '');

@@ -29,6 +29,7 @@ body {
 }
 
 .in-ctrl-panel {
+    position: relative;
     background-image: url("../img/perso_font_struct.jpg");
     height: 400px;
     margin-top: 20px;
