@@ -68,6 +68,10 @@ if(isset($_REQUEST['id_character'])) {
                 <td colspan="2">Fiche générale</td>
             </tr>
             <tr>
+                <td>Level</td>
+                <td><?= $character['level'] ?></td>
+            </tr>
+            <tr>
                 <td>Âge</td>
                 <td><?= $character['old'] ?></td>
             </tr>
