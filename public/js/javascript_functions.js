@@ -1,5 +1,37 @@
-function loginTest() {
-    $.ajax
+var socket = io();
+
+socket.on("roll dice", function(dice) {
+    if(dice.max == dice.value) {
+        $('#chiffre').text(dice.value);
+        $('.container').addClass("container_success").removeClass("container_fail");
+        $('#detailLance').text("Réussite critique");
+    } else if (dice.value == 1){
+        $('#chiffre').text(dice.value);
+        $('.container').addClass("container_fail").removeClass("container_success");
+        $('#detailLance').text("Échec critique");
+    } else {
+        if(dice.skillValue != 0) {
+            $('#detailLance').text(dice.value + " + " + dice.skillValue);
+        } else {
+            $('#detailLance').text("");
+        }
+        $('#chiffre').text(parseInt(dice.value) + parseInt(dice.skillValue));
+        $('.container').removeClass("container_fail").removeClass("container_success")
+    }
+    $('#valeurMaxDe').text("Dé de " + dice.max);
+    var skillNameText = getSkillNameOfSkill(dice.skill);
+    if(skillNameText != "") {
+        $('#typeLance').text("Test de " + skillNameText);
+    } else {
+        $('#typeLance').text("");
+    }
+    $('#utilisateurAffiche').text(dice.characterName);
+});
+
+function login() {
+    var loginParams = { login: $('#login_log').val() , password: $('#password_log').val() };
+    socket.emit('login', loginParams);
+    /*$.ajax
     ({
         url: 'ajax/connect_user.php',
         data: { login: $('#login_log').val() , password: $('#password_log').val() },
@@ -9,7 +41,7 @@ function loginTest() {
                 connect();
             }
         }
-    });
+    });*/
 }
 
 function autoConnect() {
@@ -43,7 +75,9 @@ function connect() {
 }
 
 function rollDice(maxRoll, skill) {
-    var userName = null;
+    var diceParams = {max: maxRoll, skill: skill};
+    socket.emit("roll dice", diceParams);
+    /*var userName = null;
     var login = null;
     var skillValue = 0;
     if(localStorage.getItem("user") != null) {
@@ -89,13 +123,13 @@ function rollDice(maxRoll, skill) {
             }
             $('#utilisateurAffiche').text(json.user);
         }
-    });
+    });*/
 }
 
 function getValeOfSkill(skill, character) {
     switch(skill) {
-        case "0":
-            return 0;
+        case "":
+            return "";
         case "strengh":
             return character.strengh;
         case "intelligence":
@@ -119,7 +153,7 @@ function getValeOfSkill(skill, character) {
         case "constitution":
             return character.constitution;
         default:
-            return 0;
+            return "";
     }
 }
 

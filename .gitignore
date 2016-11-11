@@ -8,3 +8,5 @@ gen
 .gitignore
 .idea/
 ajax/*.json
+node_modules/*
+
