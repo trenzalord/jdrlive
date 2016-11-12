@@ -13,7 +13,7 @@
       </div>
       <div class="ctrl-panel col-md-12">
         <div class="in-ctrl-panel">
-          <form class="form-inline">
+          <form class="form-inline" onsubmit="return false;">
             <input class="form-control" title="Temps désiré" type="number" min="0" id="timerTime"/>
             <button class="btn btn-default" type="button" onclick="startTimer($('#timerTime').val())">Démarrer</button>
           </form>
@@ -23,7 +23,7 @@
   </div>
   <div class="col-md-4 vue-zone">
     <div class="connect-zone">
-      <form class="form-inline">
+      <form class="form-inline" onsubmit="return false;">
         <input type="text" class="form-control" name="login" placeholder="Nom d'utilisateur" id="login_log"/>
         <input type="password" class="form-control" name="mdp" placeholder="Mots de passe" id="password_log"/>
         <button id="button_log" type="button" class="btn btn-default" onclick="userConnect()">Valider</button>
@@ -48,53 +48,51 @@
     <div class="right-panel">
       <div class="ctrl-panel col-md-12">
         <div class="in-ctrl-panel">
-          <form class="form-inline">
+          <form class="form-inline" onsubmit="return false;">
             <select class="form-control" title="Personnage" id="selectCharacter">
             </select>
             <button class="btn btn-default" type="button" onclick="selectCharacterClick($('#selectCharacter').val())">
               Sélectionner
             </button>
-          </form>
-          <div style="position: absolute; right: 40px; top: 40px;">
-            <button class="btn btn-default" onClick="userDisconnect()">
+            <button class="btn btn-default pull-right" type="button" onClick="userDisconnect()">
               Déconnecter
             </button>
-          </div>
+          </form>
           <br>
           <p id="characterPlayed">Joue avec : aucun personnage</p>
           <br>
           <div id="displayStatsButtons">
-            <button class="btn btn-default" onclick="addCharacter('1', '0')">Afficher les stats</button>
-            <button class="btn btn-default" onclick="addCharacter('1', '1')">Cacher les stats</button>
-            <form class="form-inline">
+            <button class="btn btn-default" type="button" onclick="addStatsCharacter()">Afficher les stats</button>
+            <button class="btn btn-default" type="button" onclick="removeStatsCharacter()">Cacher les stats</button>
+            <form class="form-inline" onsubmit="return false;">
               <input class="form-control" title="Vie" min="0" type="number" id="valeurHealth" placeholder="Vie"/>
               <select class="form-control" title="type" id="selectHealth">
                 <option value="0">Ajouter</option>
                 <option value="1">Retirer</option>
                 <option value="2">Retirer avec resistance</option>
               </select>
-              <button type="button" class="btn btn-default" onclick="updateHealth($('#valeurHealth').val(), $('#selectHealth').val())">
+              <button type="button" class="btn btn-default" onclick="updateLifePoints($('#selectHealth').val(), $('#valeurHealth').val())">
                 OK
               </button>
             </form>
-            <form class="form-inline">
+            <form class="form-inline" onsubmit="return false;">
               <input class="form-control" title="Mana" min="0" type="number" id="valeurMana" placeholder="Mana"/>
               <select class="form-control" title="type" id="selectMana">
                 <option value="0">Ajouter</option>
                 <option value="1">Retirer</option>
               </select>
-              <button type="button" class="btn btn-default" onclick="updateMana($('#valeurMana').val(), $('#selectMana').val())">
+              <button type="button" class="btn btn-default" onclick="updateMana($('#selectMana').val(), $('#valeurMana').val())">
                 OK
               </button>
             </form>
-            <form class="form-inline">
+            <form class="form-inline" onsubmit="return false;">
               <input class="form-control" title="Ephirium" min="0" type="number" id="valeurEphirium" placeholder="Ephirium"/>
               <select class="form-control" title="type" id="selectEphirium">
                 <option value="0">Ajouter</option>
                 <option value="1">Retirer</option>
                 <option value="2">Retirer avec resistance</option>
               </select>
-              <button type="button" class="btn btn-default" onclick="updateEphirium($('#valeurEphirium').val(), $('#selectEphirium').val())">
+              <button type="button" class="btn btn-default" onclick="updateEphirium($('#selectEphirium').val(), $('#valeurEphirium').val())">
                 OK
               </button>
             </form>
@@ -104,7 +102,7 @@
       <div class="ctrl-panel col-md-12">
         <div class="in-ctrl-panel">
           <div class="col-md-12 dice-line">
-            <form class="form-inline">
+            <form class="form-inline" onsubmit="return false;">
               <select title="Sélectionner votre compétence" id="selectCompetence" class="form-control">
                 <option value="">Aucune</option>
                 <option value="strengh">Force</option>
@@ -126,11 +124,11 @@
             </form>
           </div>
           <div class="col-md-12 dice-line">
-            <button class="btn btn-default btn-dice" onclick="rollDice(10, '0')">
+            <button type="button" class="btn btn-default btn-dice" onclick="rollDice(10, '0')">
               <img src="img/d10.png" alt="d10" class="img-btn">
             </button>
             <input title="Valeur de dé désiré" type="number" class="select-dice" id="select-dice"/>
-            <button class="btn btn-default btn-dice" onclick="rollDice($('#select-dice').val(), '0')">
+            <button type="button" class="btn btn-default btn-dice" onclick="rollDice($('#select-dice').val(), '0')">
               Roll
             </button>
           </div>
