@@ -1,6 +1,6 @@
 module.exports = function (io, db) {
 
-    var bcrypt = require('bcrypt');
+    //var bcrypt = require('bcrypt');
     var random = require('random-js')();
 
     /** Variables **/
@@ -159,16 +159,19 @@ module.exports = function (io, db) {
                 }
             });
             if(userId != 0) {
-                bcrypt.compare(loginParams.password, users[userId].password, function (err, res) {
-                    if (res) {
-                        logSOCKETIO("User connected: " + users[userId].login);
-                        var userAndCharacters = {userId: userId, characters: getAllCharactersOfUser(userId)};
-                        socket.emit("login", userAndCharacters);
-                    } else {
-                        logSOCKETIO("Wrong password");
-                        socket.emit("invalid credentials");
-                    }
-                });
+                logSOCKETIO("User connected: " + users[userId].login);
+                var userAndCharacters = {userId: userId, characters: getAllCharactersOfUser(userId)};
+                socket.emit("login", userAndCharacters);
+                // bcrypt.compare(loginParams.password, users[userId].password, function (err, res) {
+                //     if (res) {
+                //         logSOCKETIO("User connected: " + users[userId].login);
+                //         var userAndCharacters = {userId: userId, characters: getAllCharactersOfUser(userId)};
+                //         socket.emit("login", userAndCharacters);
+                //     } else {
+                //         logSOCKETIO("Wrong password");
+                //         socket.emit("invalid credentials");
+                //     }
+                // });
             } else {
                 logSOCKETIO("Wrong login");
                 socket.emit("invalid credentials");
