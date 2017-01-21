@@ -68,6 +68,12 @@
     bottom: 50px;
 }
 
+#utilisateurAffiche {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
 #typeLance {
     position: absolute;
     left: 0;
