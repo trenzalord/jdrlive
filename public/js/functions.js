@@ -3,6 +3,8 @@ var socket = io();
 var timer = null;
 var elapsed = 0;
 
+var BreakException = {};
+
 /** FUNCTIONS**/
 function userConnect() {
     var loginParams = { login: $('#login_log').val() , password: $('#password_log').val() };
@@ -103,6 +105,25 @@ function createStatsContainer(characterStats) {
         characterStats.mana_max,
         characterStats.ephirium_tolerance,
         characterStats.ephirium_tolerance_max);
+}
+
+function createCameraContainer(characterStats) {
+    var cameraTemplate = '<div class="character-slot" id="character-slot-' + characterStats.characterId + '" data-id="' + characterStats.characterId + '">' +
+        '<p class="character-name">' + characterStats.name +'</p>' +
+        '<div class="camera"></div>' +
+        '<div class="statBar healthBar healthBarStream"><div></div><span>' + characterStats.life_point + '/' + characterStats.life_point_max + '</span></div>' +
+        '</div>';
+    $('#cameraContainer').append(cameraTemplate);
+    updateCameraContainer($('#character-slot-' + characterStats.characterId),
+        characterStats.life_point,
+        characterStats.life_point_max);
+}
+
+function updateCameraContainer(container, h, hm) {
+    var healthBar = container.find('.healthBar');
+    healthBar.find('span').text(h + '/' + hm);
+    var prcH = (h*100)/hm;
+    healthBar.find('div').css('width', prcH + '%');
 }
 
 function updateStatsContainer(container, h, hm, m, mm, e, em){
@@ -244,10 +265,12 @@ socket.on("invalid credentials", function () {
 
 socket.on("add character", function (characterStats) {
     createStatsContainer(characterStats);
+    createCameraContainer(characterStats);
 });
 
 socket.on("remove character", function (characterId) {
     $('#stats-' + characterId).remove();
+    $('#character-slot-' + characterId).remove();
 });
 
 socket.on("update character stats", function (characterStats) {
@@ -258,6 +281,9 @@ socket.on("update character stats", function (characterStats) {
        characterStats.mana_max,
        characterStats.ephirium_tolerance,
        characterStats.ephirium_tolerance_max);
+    updateCameraContainer($('#character-slot-' + characterStats.characterId),
+        characterStats.life_point,
+        characterStats.life_point_max);
 });
 
 socket.on("start timer", function (duration) {

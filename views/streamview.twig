@@ -1,0 +1,28 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<style>
+    .stats {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    #timerBar {
+        width: 300px;
+    }
+</style>
+<div class="col-md-3" style="height: 100vh">
+    <div id="cameraContainer"></div>
+</div>
+<div class="col-md-9" style="height: 100vh; position: relative">
+    <div class="camera pull-right" id="host"><p class="character-name">Trenzalord</p></div>
+    <div class="container container_dice container_stream">
+        <p class="descriptionChiffre" id="utilisateurAffiche">Billy</p>
+        <!--<p class="sousDescriptionChiffre" id="typeLance">Lancé de Dexterité</p>-->
+        <p id="chiffre" class="chiffre_stream">20</p>
+        <!--<p class="sousDescriptionChiffre" id="detailLance">10+2</p>-->
+        <p class="descriptionChiffre" id="valeurMaxDe">Dé de 20</p>
+    </div>
+    <div class="map"></div>
+</div>
+{% endblock body %}

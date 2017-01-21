@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Nemesia' });
 });
 
+router.get('/stream', function(req, res, next) {
+    res.render('streamview', { title: 'Nemesia Stream' });
+});
+
 module.exports = router;
