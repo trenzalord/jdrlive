@@ -212,7 +212,9 @@ module.exports = function (io, db) {
         socket.on("remove character", function (characterId) {
             logSOCKETIO("Received remove character");
             if(displayedCharacters[characterId] != null) {
-                displayedCharacters.splice(characterId, 1);
+                var index = displayedCharacters.indexOf(displayedCharacters[characterId]);
+                displayedCharacters.splice(index, 1);
+
                 io.sockets.emit("remove character", characterId);
                 logSOCKETIO("Removed character " +
                     characters[characterId].firstname + " " + characters[characterId].lastname + " from the display");
