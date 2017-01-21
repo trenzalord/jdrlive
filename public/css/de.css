@@ -8,6 +8,15 @@
     cursor: pointer;
 }
 
+.container_stream {
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+    width: 300px;
+    height: 300px;
+    right: 20%;
+}
+
 #chiffre {
     position: absolute;
     left: 0;
@@ -23,6 +32,11 @@
     user-select: none;
     text-shadow: 0 0 6px whitesmoke;
     color: black;
+}
+
+.chiffre_stream {
+    top: -40px !important;
+    font-size: 250px !important;
 }
 
 .descriptionChiffre {

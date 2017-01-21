@@ -1,11 +1,11 @@
 body {
-    background-image: url("../img/201151.jpg");
+    background-image: url("../img/fond.jpg");
 }
 
 .container {
     position: relative;
-    background: whitesmoke url(../img/dice_fond.jpg);
-    border: solid black 4px;
+    background: whitesmoke url(../img/dice_font_2.jpg);
+    border: solid rgb(150, 150, 150) 4px;
     -moz-box-shadow: 3px 3px 15px 2px #000000;
     -webkit-box-shadow: 3px 3px 15px 2px #000000;
     -o-box-shadow: 3px 3px 15px 2px #000000;
@@ -26,6 +26,7 @@ body {
     -webkit-box-shadow: 0 0 50px 15px #ffffff;
     -o-box-shadow: 0 0 50px 15px #ffffff;
     box-shadow: 0 0 50px 15px #ffffff;
+    margin-left: 10px;
 }
 
 .container_fail {
@@ -105,11 +106,12 @@ body {
     font-size: 40px;
     border-radius: 2px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    z-index: 1;
 }
 
 #timerBar span {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     left: 0;
     right: 0;
 }
@@ -121,6 +123,7 @@ body {
     border-radius: 2px;
     background-color: #BFA574;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    z-index: 1;
 }
 
 #characterPlayed {
@@ -171,7 +174,7 @@ body {
     position: absolute;
     height: 25px;
     border-radius: 2px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;*/
 }
 
 .healthBar div {
@@ -213,4 +216,70 @@ h2 {
 
 .subTableRow {
     background-color: #837B68; color: white;
+}
+
+.camera {
+    display: block;
+    width: 100%;
+    height: 300px;
+    background-color: limegreen;
+    border-radius: 5px;
+}
+
+.character-slot {
+    position: relative;
+    font-family: Steamwreck, Arial, sans-serif;
+    color: white;
+    margin-top: 75px;
+}
+
+.character-name {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: -55px;
+    font-size: 75px;
+    text-shadow: 2px 2px 2px rgba(51, 51, 51, 0.8);
+}
+
+.map {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: block;
+    left: 10px;
+    top: 450px;
+    background-color: limegreen;
+}
+
+#host {
+    font-family: Steamwreck, Arial, sans-serif;
+    color: white;
+    position: relative;
+    width: 675px;
+    height: 380px;
+    margin-right: -5px;
+    margin-top: 60px;
+}
+
+.healthBarStream {
+    position: absolute;
+    bottom: -10px;
+    z-index: 3;
+    left: 10px;
+    right: 10px;
+    height: 45px;
+    border-radius: 7px;
+    box-shadow: 2px 2px 2px rgba(51, 51, 51, 0.8);
+}
+
+.healthBarStream span {
+    font-size: 35px;
+    top: -2px;
+}
+
+.healthBarStream div {
+    height: 100%;
+    width: 50%;
+    border-radius: 7px;
 }
